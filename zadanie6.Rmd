@@ -1,0 +1,80 @@
+---
+title: "zadanie6.Rmd"
+author: "Arleta Banasik"
+date: "6 maja 2018"
+output:
+  html_document:
+    theme: yeti
+    highlight: tango
+    dr_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **_Koty_ - maszyny z piekla**
+## Tak bylo, nie zmyslam
+
+![](takbylo.jpg)
+
+### To nie sa tylko domysly gdyz poniwaz:
+
+* Mam kota
+* Kasia nie ma kota
+* Ania ma psa
+
+### Pomimo ze inni punktuja powody, ze sa:
+
+1. Slodkie
+2. Nawet smaczne
+3. Mondre
+
+#### Ja wiem lepiej od nich bo [widzialam](https://www.youtube.com/watch?v=AmDDp-cCo24) 
+
+| rasa | ilosc wlosow 1-10 | nasycenie diablem 1-10 |
+| --- | --- |---|
+| Levkoy | 1 | 8 |
+| Tennessee Rex | 7 | 5 |
+| Pixie-Bob | 5 | 3 |
+| Reks Kornisz CRX | 4 | 6 |
+| Napoleon | 10 | 7 |
+| Turecki Van | 7 | 4 |
+| Ragdoll | 8 | 9 |
+| Bambino | 1 | 10 |
+
+
+```
+#include <cstdio>
+int main()
+{
+    printf( "Koty panujom nad swiatem" );
+    return 0;
+}
+
+``` 
+
+Jest to poczatek programu zleconego przez kociom masonerie, gdzie dostrzec mozna ich najblizsze cele do realizacji `printf( "Koty panujom nad swiatem" )`.
+
+
+
+## Tabela ulubionych samochodów poslow kociego rzadu
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+library(tidyverse)
+library(ggplot2)
+
+mpg %>% filter(manufacturer=="chevrolet")
+```
+## Wykres przedstawiajacy te samochody pod wzgledem klas
+```{r echo=FALSE}
+ggplot(mpg, aes(displ, hwy, colour = class)) + 
+  geom_point()
+
+```
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=TRUE}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = cty),
+             position = "jitter")
+```
