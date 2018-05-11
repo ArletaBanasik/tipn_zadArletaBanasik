@@ -1,54 +1,59 @@
-install.packages("tidyverse")
+library(tidyverse)
 library(dplyr)
-library(ggplot2)
-library(movies)
-
-# Zad 5-2
-
-filter(movies, year == 2005)             #ze zbioru movies wybiera tylko filmy z 2005 roku
 
 
+# zad 5-1
+
+library(readr)
+movies <- read_csv("movies.csv")
+View(movies)
+
+# zad 5-2
+
+filter(movies, year == 2005, Comedy == 1)            
 
 
 
-# Zad 5-3
+
+
+# zad 5-3
  
-movies %>%                               #wybieramy zbior movies
-  select(title, year, budget)%>%         #wybieramy co ma nam pokazac
-  arrange(desc(budget))                  #szeregujemy malejaco wedlug budzetu
+
+select(movies, title, year, budget)%>%         
+  arrange(desc(budget))                  
 
 
 
 
 
-# Zad 5-4
-
-movies %>%
-  filter(Animation == 1, 1990<=year, 1999 >=year)%>% #wybieramy filmy oznaczone jako animacje z lat 1990-1999
-  arrange(desc(rating))%>%               #szeregujemy malej¹co wed³ug ocen
-  select(title, year, rating)            #by bylo czytelniej
+# zad 5-4
 
 
-
-
-
-# Zad 5-5
-
-movies %>%
-  filter(Drama == 1)%>%                  #wybieramy dramaty
-  arrange(desc(length))%>%               #szeregujemy malej¹co wedlug dlugosci
-  select(title, year, length)            #by bylo czytelniej
+  filter(movies, Animation == 1, year >= 1990 & year < 2000)%>%  
+  arrange(desc(rating))              
+             
 
 
 
 
 
-# Zad 5-6
+# zad 5-5
 
-movies %>%
-  group_by(mpaa)%>%                                  #grupujemy wedlug kategori MPAA
-  summarise(srednia = mean(rating, na.rm = TRUE),    #srednia filmów z danej kategorii MPAA
-            odchylenie = sd(rating, na.rm = TRUE))   #odchylenie standardowe filmów z danej kategorii MPAA
+
+  dramaty <- filter(movies,Drama == 1)                 
+  arrange(dramaty, desc(length))               
+            
+
+
+
+
+
+# zad 5-6
+
+
+  mpaa_rating <- group_by (movies, mpaa)%>%                                 
+  summarise (srednia = mean(rating), odchylenie = mad(rating)) 
+  
 
 
 
